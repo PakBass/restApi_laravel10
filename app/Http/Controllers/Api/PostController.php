@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(5);
 
         return new PostResource(true, 'List Data Posts', $posts);
     }
@@ -78,14 +78,14 @@ class PostController extends Controller
         //check if image is not empty
         if ($request->hasFile('image')) {
 
-            //upload image
+            //upload gambar baru
             $image = $request->file('image');
             $image->storeAs('public/posts', $image->hashName());
 
-            //delete old image
+            //menghapus gambar lama
             Storage::delete('public/posts/' .basename($post->image));
 
-            //update post with new image
+            //update post dengan gambar baru
             $post->update([
                 'image'     => $image->hashName(),
                 'title'     => $request->title,
