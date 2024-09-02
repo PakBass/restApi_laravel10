@@ -9,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiResource('/posts', [PostController::class, 'index']);
+Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
