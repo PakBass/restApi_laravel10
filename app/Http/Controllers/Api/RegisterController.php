@@ -20,7 +20,7 @@ class RegisterController extends Controller
             'password'  => 'required|string|confirmed|min:6',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
@@ -32,12 +32,12 @@ class RegisterController extends Controller
 
         if ($user) {
             return response()->json([
-                'success'   => true,
+                'succes'    => true,
                 'user'      => $user,
             ], 201);
         }
         return response()->json([
-            'succes'    => false,
+            'success' => false,
         ], 409);
     }
 }
